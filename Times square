@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Times Square - Your Global News Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2c5282;
+            --accent-color: #4299e1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6554312b-cf6d-4f08-9746-d6327fe50543.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+        }
+
+        .news-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-tab {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-tab.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .animate-spin-slow {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .breaking-news-ticker {
+            background-color: #e53e3e;
+            color: white;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .breaking-news-item {
+            display: inline-block;
+            padding-right: 50px;
+            animation: ticker 30s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none !important;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .hero {
+                min-height: 300px;
+            }
+        }
+
+        footer {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Bar with Date and Social Links -->
+    <div class="bg-gray-800 text-white py-1 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
+            <div class="flex items-center space-x-4">
+                <span id="current-date" class="font-medium"></span>
+                <span class="hidden md:flex">World Edition | New York Headquarters</span>
+            </div>
+            <div class="flex space-x-3">
+                <a href="#" class="hover:text-blue-300">Login</a>
+                <a href="#" class="hover:text-blue-300">Subscribe</a>
+                <div class="flex space-x-2">
+                    <a href="#"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/64a4231c-d6d3-4071-9a04-abd674fd066b.png" alt="Facebook icon simple white F logo on dark background" class="w-5 h-5"></a>
+                    <a href="#"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3eb39ad4-c8b7-4748-aab9-84f041e0ec4a.png" alt="Twitter icon simple white bird logo on dark background" class="w-5 h-5"></a>
+                    <a href="#"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1c70f43f-3de9-47c6-8e44-1e27b54e7983.png" alt="Instagram icon simple white camera logo on dark background" class="w-5 h-5"></a>
+                    <a href="#"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d958ccda-5b57-4f03-9074-6114e11e347a.png" alt="YouTube icon simple white play button logo on dark background" class="w-5 h-5"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breaking News Ticker -->
+    <div class="breaking-news-ticker py-2 overflow-hidden">
+        <div class="breaking-news-container">
+            <span class="font-bold px-4">BREAKING:</span>
+            <div class="breaking-news-item inline-block">Global summit addresses climate change crisis • New policies announced • Political leaders meet in Brussels •</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar text-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <h1 class="text-2xl font-bold text-white flex items-center">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fab6440a-c11e-4980-b45b-b3295a5853b3.png" alt="Times Square logo - stylized TS monogram with newspaper design elements" class="mr-2">
+                        Times Square
+                    </h1>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block desktop-menu">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium bg-blue-700 text-white">Home</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 hover:text-white">Headlines</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 hover:text-white">Politics</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 hover:text-white">Business</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 hover:text-white">Tech & Science</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 hover:text-white">Health</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 hover:text-white">Sports</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-800 hover:text-white">Arts & Culture</a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden mobile-menu">
+                    <button class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-inset focus:ring-white">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero flex items-center justify-center text-white">
+        <div class="max-w-3xl text-center px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Times Square - Breaking News Worldwide</h1>
+            <p class="text-xl mb-8">24/7 coverage of global events, politics, business & more</p>
+            <div class="relative max-w-md mx-auto">
+                <input type="text" placeholder="Search for news..." class="w-full py-3 px-4 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        <div class="flex overflow-x-auto scrollbar-hide space-x-2 pb-2">
+            <div class="category-tab px-4 py-2 rounded-full bg-blue-100 text-blue-800 active">Headlines</div>
+            <div class="category-tab px-4 py-2 rounded-full bg-gray-100 text-gray-800">World</div>
+            <div class="category-tab px-4 py-2 rounded-full bg-gray-100 text-gray-800">Politics</div>
+            <div class="category-tab px-4 py-2 rounded-full bg-gray-100 text-gray-800">Business</div>
+            <div class="category-tab px-4 py-2 rounded-full bg-gray-100 text-gray-800">Technology</div>
+            <div class="category-tab px-4 py-2 rounded-full bg-gray-100 text-gray-800">Science</div>
+            <div class="category-tab px-4 py-2 rounded-full bg-gray-100 text-gray-800">Health</div>
+            <div class="category-tab px-4 py-2 rounded-full bg-gray-100 text-gray-800">Sports</div>
+            <div class="category-tab px-4 py-2 rounded-full bg-gray-100 text-gray-800">Entertainment</div>
+            <div class="category-tab px-4 py-2 rounded-full bg-gray-100 text-gray-800">Opinion</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Featured Story -->
+        <div class="mb-10">
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                    <div class="md:order-1">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/dd81b41f-dc9d-4943-aa99-412da7c1e76d.png" alt="Breaking news scene of international convention center with world leaders at podium giving speeches" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col justify-center">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded">Breaking</span>
+                            <span class="ml-3 text-sm text-gray-600">15 May 2024 • World</span>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4">Breaking: World Leaders Reach Historic Climate Agreement</h2>
+                        <p class="text-gray-700 mb-6">Representatives from 196 countries reached a landmark agreement on carbon emissions targets in the late hours of Sunday, marking one of the most comprehensive climate deals in history...</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3a15f72f-2a34-4697-99c9-721d97fea974.png" alt="Portrait of senior journalist with glasses reporting on climate issues" class="w-8 h-8 rounded-full">
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium">Charlotte Williams</p>
+                                    <p class="text-xs text-gray-500">Chief International Correspondent</p>
+                                </div>
+                            </div>
+                            <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read Full Story →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- News Card 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden news-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4b78b98d-3e39-46ce-acd7-8e552a407464.png" alt="AI robot with holographic interface working on futuristic data analysis" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <span class="text-blue-600 text-xs font-semibold">Technology</span>
+                    <h3 class="text-xl font-bold mb-2">New AI Model Breaks Performance Records</h3>
+                    <p class="text-gray-600 text-sm mb-4">Researchers unveil breakthrough in artificial intelligence that outperforms human benchmarks in multiple domains...</p>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-500">14 May 2024</span>
+                        <a href="#" class="text-blue-600 hover:underline">Read</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Card 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden news-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2f300ece-5660-450d-afff-5f103768639e.png" alt="Stock exchange floor with traders analyzing market data on multiple screens" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <span class="text-green-600 text-xs font-semibold">Business</span>
+                    <h3 class="text-xl font-bold mb-2">Markets Rally After Central Bank Decision</h3>
+                    <p class="text-gray-600 text-sm mb-4">Global markets surged as the Federal Reserve signaled a more cautious approach to interest rate hikes in the coming months...</p>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-500">13 May 2024</span>
+                        <a href="#" class="text-blue-600 hover:underline">Read</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Card 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden news-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/41de3a4f-bb0f-4ac7-b348-3a8d92b438c4.png" alt="US Capitol building with political figures engaged in heated debate" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <span class="text-red-600 text-xs font-semibold">Politics</span>
+                    <h3 class="text-xl font-bold mb-2">Senate Committee Approves Controversial Bill</h3>
+                    <p class="text-gray-600 text-sm mb-4">In a party-line vote, the legislation moves forward despite concerns from civil rights groups about potential overreach...</p>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-500">12 May 2024</span>
+                        <a href="#" class="text-blue-600 hover:underline">Read</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Card 4 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden news-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/480c4f88-6f80-4481-b0f7-00239b29cf5e.png" alt="Medical researcher in lab examining DNA sequence on advanced equipment" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <span class="text-purple-600 text-xs font-semibold">Science</span>
+                    <h3 class="text-xl font-bold mb-2">Breakthrough in Genetic Research Promises New Treatments</h3>
+                    <p class="text-gray-600 text-sm mb-4">Scientists discover novel pathway that could lead to cures for several hereditary diseases affecting millions worldwide...</p>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-500">11 May 2024</span>
+                        <a href="#" class="text-blue-600 hover:underline">Read</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Card 5 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden news-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6f1d8dc0-6200-48f0-a9a2-250cbbf61ad9.png" alt="Champions League final match with player scoring winning goal in packed stadium" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <span class="text-orange-600 text-xs font-semibold">Sports</span>
+                    <h3 class="text-xl font-bold mb-2">Historic Champions League Final Ends in Penalty Shootout</h3>
+                    <p class="text-gray-600 text-sm mb-4">After 120 minutes of dramatic football, the tournament concludes with an unforgettable match that will go down in history...</p>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-500">10 May 2024</span>
+                        <a href="#" class="text-blue-600 hover:underline">Read</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Card 6 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden news-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0d0186ed-9927-4b17-9067-d5e1073996a2.png" alt="Film festival red carpet with A-list celebrities posing for photographers" class="w-full h-48 object-cover">
+                <div class="p-5">
+                    <span class="text-pink-600 text-xs font-semibold">Entertainment</span>
+                    <h3 class="text-xl font-bold mb-2">Annual Film Festival Celebrates Diversity in Cinema</h3>
+                    <p class="text-gray-600 text-sm mb-4">This year's event showcases record number of independent films from underrepresented voices in the industry...</p>
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-500">9 May 2024</span>
+                        <a href="#" class="text-blue-600 hover:underline">Read</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subscribe Section -->
+        <div class="bg-gradient-to-r from-blue-800 to-blue-600 rounded-xl p-8 md:p-10 mt-12 text-white">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0 md:w-1/2">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-2">Times Square Premium</h2>
+                        <p class="text-blue-100">Unlock ad-free experience and exclusive investigative journalism</p>
+                    </div>
+                    <div class="md:w-1/2">
+                        <form class="flex flex-col sm:flex-row gap-2">
+                            <input type="email" placeholder="Your email address" class="px-4 py-3 rounded-lg text-gray-900 focus:outline-none flex-grow">
+                            <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-lg whitespace-nowrap">Subscribe Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+  
